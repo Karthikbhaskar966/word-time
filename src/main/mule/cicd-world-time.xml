@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<mule xmlns:ee="http://www.mulesoft.org/schema/mule/ee/core" xmlns:http="http://www.mulesoft.org/schema/mule/http"
+	xmlns="http://www.mulesoft.org/schema/mule/core"
+	xmlns:doc="http://www.mulesoft.org/schema/mule/documentation" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
+http://www.mulesoft.org/schema/mule/http http://www.mulesoft.org/schema/mule/http/current/mule-http.xsd
+http://www.mulesoft.org/schema/mule/ee/core http://www.mulesoft.org/schema/mule/ee/core/current/mule-ee.xsd">
+	<flow name="cicd-world-timeFlow" doc:id="9408eda7-ee6f-4add-8946-d5c88c48a026" >
+		<scheduler doc:name="Scheduler" doc:id="dfb72f50-d716-474c-b68d-74544ede1c3f" >
+			<scheduling-strategy >
+				<fixed-frequency frequency="1" timeUnit="MINUTES"/>
+			</scheduling-strategy>
+		</scheduler>
+		<logger level="INFO" doc:name="Logger" doc:id="8c7f6b55-cc65-4dff-9899-84adbcf11c3a" message="flow start"/>
+		<http:request method="GET" doc:name="Request" doc:id="28f917e0-f763-46bd-8c9d-e9557f1228d2" url="http://test-project122.us-e2.cloudhub.io/test"/>
+		<ee:transform doc:name="Transform Message" doc:id="9bae5df0-7a97-46e4-a090-cbfeb0e876f1" >
+			<ee:message >
+				<ee:set-payload ><![CDATA[%dw 2.0
+output application/json
+---
+payload]]></ee:set-payload>
+			</ee:message>
+		</ee:transform>
+		<logger level="INFO" doc:name="Logger" doc:id="7120782b-cb7b-4828-81e5-155c7ccaabae" message="end flow:#[payload]"/>
+	</flow>
+</mule>
