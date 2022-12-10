@@ -1,0 +1,25 @@
+#%RAML 1.0
+title: ravikumar-bank-customer
+/customers:
+  /registration:
+    get:
+      responses:
+        200:
+          body:
+            application/json:
+              example:
+                           {
+                      "registrationRequest" : {
+                        "contactType": "mobile",
+                        "countryCode" : "+91",
+                        "mobile" : "9381824906",
+                        "email" : "karthikbhaskar966@gmial.com",
+                        "password" : "karthik@988",
+                        "aceptDataPolicy" : true,
+                        "recieveNews" : true,
+                        "aceptPIC" : true,
+                        "locale": "en",
+                        "captchatoken": "Bxklsfjgtjg9585igjfkjkj",
+                        "recievecaliamsettle" : 	
+                      }
+                    }
